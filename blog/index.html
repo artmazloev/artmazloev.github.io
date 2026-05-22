@@ -1,0 +1,56 @@
+---
+layout: default
+title: Блог
+description: Заметки про обучение, технологии и менеджмент.
+permalink: /blog/
+body_class: page--blog
+---
+
+<section class="section section--blog-index">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <span class="kicker">Блог</span>
+      <h1>Заметки про обучение, технологии и менеджмент</h1>
+      <p class="section__sub">
+        Делюсь практикой, экспериментами и выводами из работы в T&amp;D и L&amp;D.
+      </p>
+    </div>
+
+    {% if site.posts.size > 0 %}
+      <div class="blog-filter" role="tablist" aria-label="Фильтр по категориям">
+        <button class="blog-filter__btn is-active" data-cat="all" type="button">Все</button>
+        {% for cat in site.blog_categories %}
+          <button class="blog-filter__btn" data-cat="{{ cat.slug }}" type="button">{{ cat.name }}</button>
+        {% endfor %}
+      </div>
+
+      <ul class="posts posts--list" role="list">
+        {% for post in site.posts %}
+          <li class="post-card" data-cats="{{ post.categories | join: ' ' }}">
+            <a href="{{ post.url | relative_url }}" class="post-card__link">
+              <div class="post-card__meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+                {% if post.categories.size > 0 %}
+                  <span aria-hidden="true">·</span>
+                  <span class="post-card__cats">
+                    {% for cat in post.categories %}
+                      {% assign cat_obj = site.blog_categories | where: "slug", cat | first %}
+                      {{ cat_obj.name | default: cat }}{% unless forloop.last %}, {% endunless %}
+                    {% endfor %}
+                  </span>
+                {% endif %}
+              </div>
+              <h2 class="post-card__title">{{ post.title }}</h2>
+              {% if post.excerpt %}
+                <p class="post-card__excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+              {% endif %}
+              <span class="post-card__more">Читать →</span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="blog-empty">Записей пока нет. Скоро здесь появятся заметки.</p>
+    {% endif %}
+  </div>
+</section>

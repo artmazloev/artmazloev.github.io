@@ -1,0 +1,54 @@
+title: Артур Мазлоев
+description: 17+ лет в T&D и HR. Стратегия L&D, развитие AI-компетенций, EdTech.
+url: "https://artmazloev.github.io"
+author:
+  name: Артур Мазлоев
+  email: a.mazloev@mail.ru
+
+lang: ru
+timezone: Europe/Moscow
+
+permalink: /blog/:slug/
+
+# Категории блога (используются для фильтра и в CMS)
+blog_categories:
+  - slug: learning
+    name: Обучение
+  - slug: tech
+    name: Технологии
+  - slug: management
+    name: Менеджмент
+
+# Pagination plugin
+paginate: 10
+paginate_path: "/blog/page:num/"
+
+# Подсветка кода
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+
+# Что не включать в сборку
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - .gitignore
+
+# Плагины, разрешённые на GitHub Pages
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"

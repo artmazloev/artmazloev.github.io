@@ -1,0 +1,36 @@
+backend:
+  name: github
+  repo: artmazloev/artmazloev.github.io
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+publish_mode: simple
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+locale: "ru"
+
+collections:
+  - name: "posts"
+    label: "Записи блога"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    editor:
+      preview: false
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Дата публикации", name: "date", widget: "datetime", format: "YYYY-MM-DD HH:mm:ss +0300", date_format: "DD.MM.YYYY", time_format: "HH:mm" }
+      - label: "Категории"
+        name: "categories"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Обучение", value: "learning" }
+          - { label: "Технологии", value: "tech" }
+          - { label: "Менеджмент", value: "management" }
+        default: ["learning"]
+      - { label: "Короткое описание (для превью и SEO)", name: "description", widget: "string", required: false }
+      - { label: "Текст записи", name: "body", widget: "markdown" }

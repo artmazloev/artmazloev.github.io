@@ -1,0 +1,24 @@
+<header class="header" id="header">
+  <div class="wrap header__inner">
+    <a href="{{ '/' | relative_url }}" class="logo" aria-label="Артур Мазлоев — на главную">
+      <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" fill="none">
+        <path
+          d="M6 24 L16 6 L26 24"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path d="M10.5 18 H21.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+      </svg>
+      <span class="logo__text">Артур Мазлоев</span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="{{ '/#about' | relative_url }}">О себе</a>
+      <a href="{{ '/#experience' | relative_url }}">Опыт</a>
+      <a href="{{ '/#ai' | relative_url }}">AI и EdTech</a>
+      <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="is-active"{% endif %}>Блог</a>
+    </nav>
+    <a class="btn btn--ghost header__cta" href="{{ '/#contact' | relative_url }}">Связаться</a>
+  </div>
+</header>
