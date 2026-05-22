@@ -1,31 +1,29 @@
-# Hero-секция на главной
-title_html: 'Создаю системы обучения,<br />в которых работает <span class="accent">AI</span>.'
-lede: "17+ лет в T&D и HR. Выстраиваю стратегию L&D, развиваю AI-компетенции организации и запускаю цифровые академии для тысяч сотрудников Retail, E-commerce, Product & Tech."
-
-cta_primary_label: "Контакты"
-
+title_html: Создаю системы обучения,<br />в которых работает <span
+  class="accent">AI</span>.
+lede: 17+ лет в T&D и HR. Выстраиваю стратегию L&D, развиваю AI-компетенции
+  организации и запускаю цифровые академии для тысяч сотрудников Retail,
+  E-commerce, Product & Tech.
+cta_primary_label: Контакты
 stats:
-  - label: "лет в L&D"
-    value: "17"
-    suffix: "+"
-  - label: "лет в управлении"
-    value: "8"
-    suffix: "+"
-  - label: "сотрудников в охвате"
-    value: "~10K"
-    suffix: ""
-  - label: "бизнес-эффект проекта"
+  - label: лет в L&D
+    value: "18"
+    suffix: +
+  - label: лет в управлении
+    value: "10"
+    suffix: +
+  - label: охват ЦА
+    value: ~30K
+    suffix: сотрудников
+  - label: подтвержденный эффект в проектах до
     value: "300"
-    suffix: "млн ₽"
-
-# Бегущая строка под Hero
+    suffix: млн ₽
 marquee:
-  - "L&D Strategy"
-  - "AI Literacy"
-  - "EdTech"
-  - "LMS / LXP"
-  - "Adaptive Learning"
-  - "Assessment"
-  - "Reskilling"
-  - "Change Management"
-  - "Stakeholder C-level"
+  - L&D Strategy
+  - AI Literacy
+  - EdTech
+  - Learning transfer at work
+  - Adaptive Learning
+  - Assessment & Development centers
+  - Reskilling
+  - Change Management
+  - Stakeholder management
