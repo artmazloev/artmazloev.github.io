@@ -27,8 +27,7 @@ collections:
         fields:
           - { label: "Заголовок (можно с HTML: <br />, <span class='accent'>...</span>)", name: "title_html", widget: "text" }
           - { label: "Подзаголовок (lede)", name: "lede", widget: "text" }
-          - { label: "Кнопка основная — текст", name: "cta_primary_label", widget: "string" }
-          - { label: "Кнопка вторичная — текст", name: "cta_secondary_label", widget: "string" }
+          - { label: "Кнопка — текст (ведёт на #contact)", name: "cta_primary_label", widget: "string" }
           - label: "Цифры под Hero"
             name: "stats"
             widget: "list"
