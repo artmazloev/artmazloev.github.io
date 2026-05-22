@@ -1,0 +1,32 @@
+# Hero-секция на главной
+title_html: 'Создаю системы обучения,<br />в которых работает <span class="accent">AI</span>.'
+lede: "17+ лет в T&D и HR. Выстраиваю стратегию L&D, развиваю AI-компетенции организации и запускаю цифровые академии для тысяч сотрудников Retail, E-commerce, Product & Tech."
+
+cta_primary_label: "Обсудить роль"
+cta_secondary_label: "Скачать резюме (PDF)"
+
+stats:
+  - label: "лет в L&D"
+    value: "17"
+    suffix: "+"
+  - label: "лет в управлении"
+    value: "8"
+    suffix: "+"
+  - label: "сотрудников в охвате"
+    value: "~10K"
+    suffix: ""
+  - label: "бизнес-эффект проекта"
+    value: "300"
+    suffix: "млн ₽"
+
+# Бегущая строка под Hero
+marquee:
+  - "L&D Strategy"
+  - "AI Literacy"
+  - "EdTech"
+  - "LMS / LXP"
+  - "Adaptive Learning"
+  - "Assessment"
+  - "Reskilling"
+  - "Change Management"
+  - "Stakeholder C-level"

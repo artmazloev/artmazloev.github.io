@@ -5,14 +5,14 @@
         <path d="M6 24 L16 6 L26 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M10.5 18 H21.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
       </svg>
-      <span>Артур Мазлоев · T&amp;D &amp; AI in Learning</span>
+      <span>{{ site.data.site.footer_tagline }}</span>
     </div>
     <div class="footer__meta">
       <span>© <span id="year"></span></span>
       <span aria-hidden="true">·</span>
-      <a href="https://t.me/amazloev" target="_blank" rel="noopener">t.me/amazloev</a>
+      <a href="{{ site.data.site.contacts.telegram_url }}" target="_blank" rel="noopener">{{ site.data.site.contacts.telegram_url | remove: 'https://' }}</a>
       <span aria-hidden="true">·</span>
-      <a href="mailto:a.mazloev@mail.ru">a.mazloev@mail.ru</a>
+      <a href="mailto:{{ site.data.site.contacts.email }}">{{ site.data.site.contacts.email }}</a>
     </div>
   </div>
 </footer>

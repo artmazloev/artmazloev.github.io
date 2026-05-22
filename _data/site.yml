@@ -1,0 +1,11 @@
+# Общие данные сайта (используются в шапке/подвале/мета-тегах)
+hero_status: "Открыт к предложениям · Москва / удалённо"
+
+contacts:
+  telegram_handle: "@amazloev"
+  telegram_url: "https://t.me/amazloev"
+  email: "a.mazloev@mail.ru"
+  cv_label: "CV · PDF"
+  cv_file: "/assets/cv.pdf"
+
+footer_tagline: "Артур Мазлоев · T&D & AI in Learning"

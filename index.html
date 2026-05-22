@@ -5,6 +5,15 @@ description: "17+ лет в T&D и HR. Стратегия L&D, развитие 
 preload_portrait: true
 ---
 
+{%- assign hero = site.data.hero -%}
+{%- assign about = site.data.about -%}
+{%- assign exp = site.data.experience -%}
+{%- assign ai = site.data.ai_section -%}
+{%- assign edu = site.data.education -%}
+{%- assign contact = site.data.contact -%}
+{%- assign blog = site.data.blog_section -%}
+{%- assign site_data = site.data.site -%}
+
 <!-- Hero -->
 <section class="hero">
   <div class="hero__grid-bg" aria-hidden="true"></div>
@@ -12,40 +21,28 @@ preload_portrait: true
     <div class="hero__copy">
       <div class="eyebrow">
         <span class="dot"></span>
-        <span>Открыт к предложениям · Москва / удалённо</span>
+        <span>{{ site_data.hero_status }}</span>
       </div>
       <h1 class="hero__title">
-        Создаю системы обучения,<br />
-        в которых работает <span class="accent">AI</span>.
+        {{ hero.title_html }}
       </h1>
       <p class="hero__lede">
-        17+ лет в T&D и HR. Выстраиваю стратегию L&D, развиваю AI-компетенции организации и
-        запускаю цифровые академии для тысяч сотрудников Retail, E-commerce, Product&nbsp;&amp;&nbsp;Tech.
+        {{ hero.lede }}
       </p>
       <div class="hero__cta">
-        <a class="btn btn--primary" href="#contact">Обсудить роль</a>
-        <a class="btn btn--ghost" href="{{ '/assets/cv.pdf' | relative_url }}" target="_blank" rel="noopener">
-          Скачать резюме (PDF)
+        <a class="btn btn--primary" href="#contact">{{ hero.cta_primary_label }}</a>
+        <a class="btn btn--ghost" href="{{ site_data.contacts.cv_file | relative_url }}" target="_blank" rel="noopener">
+          {{ hero.cta_secondary_label }}
         </a>
       </div>
 
       <dl class="stats">
+        {% for s in hero.stats %}
         <div class="stat">
-          <dt>лет в L&D</dt>
-          <dd>17<span class="stat__plus">+</span></dd>
+          <dt>{{ s.label }}</dt>
+          <dd>{{ s.value }}{% if s.suffix and s.suffix != "" %}{% if s.suffix == "+" %}<span class="stat__plus">{{ s.suffix }}</span>{% else %}<span class="stat__unit">{{ s.suffix }}</span>{% endif %}{% endif %}</dd>
         </div>
-        <div class="stat">
-          <dt>лет в управлении</dt>
-          <dd>8<span class="stat__plus">+</span></dd>
-        </div>
-        <div class="stat">
-          <dt>сотрудников в охвате</dt>
-          <dd>~10K</dd>
-        </div>
-        <div class="stat">
-          <dt>бизнес-эффект проекта</dt>
-          <dd>300<span class="stat__unit">млн ₽</span></dd>
-        </div>
+        {% endfor %}
       </dl>
     </div>
 
@@ -71,24 +68,7 @@ preload_portrait: true
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
-      <span>L&D Strategy</span><span>·</span>
-      <span>AI Literacy</span><span>·</span>
-      <span>EdTech</span><span>·</span>
-      <span>LMS / LXP</span><span>·</span>
-      <span>Adaptive Learning</span><span>·</span>
-      <span>Assessment</span><span>·</span>
-      <span>Reskilling</span><span>·</span>
-      <span>Change Management</span><span>·</span>
-      <span>Stakeholder C-level</span><span>·</span>
-      <span>L&D Strategy</span><span>·</span>
-      <span>AI Literacy</span><span>·</span>
-      <span>EdTech</span><span>·</span>
-      <span>LMS / LXP</span><span>·</span>
-      <span>Adaptive Learning</span><span>·</span>
-      <span>Assessment</span><span>·</span>
-      <span>Reskilling</span><span>·</span>
-      <span>Change Management</span><span>·</span>
-      <span>Stakeholder C-level</span><span>·</span>
+      {% for item in hero.marquee %}<span>{{ item }}</span><span>·</span>{% endfor %}{% for item in hero.marquee %}<span>{{ item }}</span><span>·</span>{% endfor %}
     </div>
   </div>
 </section>
@@ -97,30 +77,17 @@ preload_portrait: true
 <section class="section" id="about">
   <div class="wrap section__grid">
     <div class="section__head">
-      <span class="kicker">01 — О себе</span>
-      <h2>Профессионал на стыке людей, данных и технологий</h2>
+      <span class="kicker">{{ about.kicker }}</span>
+      <h2>{{ about.title }}</h2>
     </div>
     <div class="section__body">
-      <p class="lead">
-        Руковожу обучением и развитием в больших розничных и продуктовых организациях.
-        Соединяю классический T&D с цифровыми инструментами и AI: от стратегии и архитектуры
-        академии до конкретных программ, метрик и бизнес-эффекта.
-      </p>
-      <p>
-        Открытый и комфортный в общении, легко нахожу общий язык с командами и стейкхолдерами
-        уровня C-level. Люблю технологии — активно изучаю и внедряю их в работу, увлекаюсь
-        программированием (в 2025 завершил «Профессию Python-разработчик» в Hexlet).
-      </p>
+      {% for p in about.paragraphs %}
+        {% if forloop.first %}<p class="lead">{{ p }}</p>{% else %}<p>{{ p }}</p>{% endif %}
+      {% endfor %}
 
       <ul class="chips" role="list">
-        <li>L&D Strategy</li>
-        <li>AI Literacy</li>
-        <li>EdTech / LMS / LXP</li>
-        <li>Instructional Design</li>
-        <li>Hogan Assessment</li>
-        <li>Product Approach in L&D</li>
-        <li>Change Management</li>
-        <li>People Management</li>
+        {% for chip in about.chips %}<li>{{ chip }}</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -130,143 +97,46 @@ preload_portrait: true
 <section class="section section--alt" id="experience">
   <div class="wrap">
     <div class="section__head section__head--center">
-      <span class="kicker">02 — Опыт и кейсы</span>
-      <h2>Цифровая Академия М.Видео-Эльдорадо и не только</h2>
+      <span class="kicker">{{ exp.kicker }}</span>
+      <h2>{{ exp.title }}</h2>
       <p class="section__sub">
-        Апрель 2021 — Октябрь 2025 · Руководитель управления по обучению офиса и
-        специальным проектам. Карьерный трек в компании — с 2013 года.
+        {{ exp.subtitle }}
       </p>
     </div>
 
     <div class="cards">
-      <article class="card">
+      {% assign cases = site.cases | sort: "order" %}
+      {% for c in cases %}
+      <article class="card{% if c.accent %} card--accent{% endif %}">
         <header class="card__head">
-          <span class="card__tag">Стратегия</span>
-          <h3>Цифровая Академия с нуля</h3>
+          <span class="card__tag">{{ c.tag }}</span>
+          <h3>{{ c.title }}</h3>
         </header>
         <p>
-          Разработал стратегию и выстроил Цифровую Академию для развития цифровых
-          компетенций ~3&nbsp;000 сотрудников бэк-офиса (в т.ч. ~1500–2000 Product &amp; Tech)
-          и менеджмента Top / Upper / Middle. Управлял портфелем программ и бюджетом.
+          {{ c.description }}
         </p>
+        {% if c.metrics and c.metrics.size > 0 %}
         <ul class="metrics">
-          <li><b>~3 000</b><span>сотрудников в фокусе</span></li>
-          <li><b>3 уровня</b><span>менеджмента</span></li>
+          {% for m in c.metrics %}<li><b>{{ m.value }}</b><span>{{ m.label }}</span></li>
+          {% endfor %}
         </ul>
+        {% endif %}
+        {% if c.note and c.note != "" %}<p class="card__note">{{ c.note }}</p>{% endif %}
       </article>
-
-      <article class="card">
-        <header class="card__head">
-          <span class="card__tag">Reskilling</span>
-          <h3>Школы цифровых профессий</h3>
-        </header>
-        <p>
-          Школы Product, System Analyst, Chapter Lead, Agile, FullStack-разработчик.
-          Сократили расходы на найм и адаптацию.
-        </p>
-        <ul class="metrics">
-          <li><b>COR 89–92%</b><span>завершаемость</span></li>
-          <li><b>80%</b><span>выпускников в командах</span></li>
-          <li><b>−30%</b><span>расходы на найм/адаптацию</span></li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header class="card__head">
-          <span class="card__tag">Upskilling</span>
-          <h3>Программы для менеджмента</h3>
-        </header>
-        <p>
-          «Лидерство в цифровой среде» (CEO-1, CEO-2), «Продуктовый подход для бизнеса»,
-          «Цифровая экономика», «Unit-экономика».
-        </p>
-        <ul class="metrics">
-          <li><b>COR 95–98%</b><span>завершаемость</span></li>
-          <li><b>CSI 4.8/5</b><span>удовлетворённость</span></li>
-          <li><b>−30%</b><span>time-to-market продуктов*</span></li>
-        </ul>
-        <p class="card__note">* косвенное влияние</p>
-      </article>
-
-      <article class="card card--accent">
-        <header class="card__head">
-          <span class="card__tag">EdTech</span>
-          <h3>Рекомендательная система обучения</h3>
-        </header>
-        <p>
-          Разработал и запустил рекомендательную систему обучения, пилотировал AR/VR/AI,
-          автоматизировал процессы адаптации и оценки.
-        </p>
-        <ul class="metrics">
-          <li><b>300 млн ₽</b><span>подтверждённый эффект</span></li>
-          <li><b>~10 000</b><span>сотрудников розницы</span></li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header class="card__head">
-          <span class="card__tag">Assessment</span>
-          <h3>Оценка компетенций и ИПР</h3>
-        </header>
-        <p>
-          Комплексная оценка продуктовых и технических компетенций, ИПР, карьерные треки,
-          пилот AI-ассессмент-центров. Методология Hogan.
-        </p>
-        <ul class="metrics">
-          <li><b>Hogan</b><span>сертифицирован 2023/24</span></li>
-          <li><b>AI AC</b><span>пилот</span></li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header class="card__head">
-          <span class="card__tag">Эффективность L&D</span>
-          <h3>Метрики и time-to-delivery</h3>
-        </header>
-        <p>
-          Внедрил метрики и подходы к оценке бизнес-эффектов от обучения и оценки.
-          Технологизировал производство образовательного контента.
-        </p>
-        <ul class="metrics">
-          <li><b>21 → 7 дней</b><span>time-to-delivery</span></li>
-          <li><b>−66%</b><span>цикл выпуска контента</span></li>
-        </ul>
-      </article>
+      {% endfor %}
     </div>
 
     <div class="timeline">
-      <h3 class="timeline__title">Карьерный трек</h3>
+      <h3 class="timeline__title">{{ exp.timeline_title }}</h3>
       <ol class="timeline__list">
+        {% for item in exp.timeline %}
         <li>
-          <span class="timeline__years">2021 — 2025</span>
+          <span class="timeline__years">{{ item.years }}</span>
           <div>
-            <b>М.Видео-Эльдорадо</b> · Руководитель управления по обучению офиса и
-            специальным проектам
+            <b>{{ item.company }}</b> · {{ item.role }}
           </div>
         </li>
-        <li>
-          <span class="timeline__years">2018 — 2021</span>
-          <div><b>М.Видео-Эльдорадо</b> · Руководитель отдела развития технологий обучения</div>
-        </li>
-        <li>
-          <span class="timeline__years">2015 — 2018</span>
-          <div>
-            <b>М.Видео-Эльдорадо</b> · Руководитель группы дистанционного обучения и обучения
-            продуктам
-          </div>
-        </li>
-        <li>
-          <span class="timeline__years">2014 — 2015</span>
-          <div><b>М.Видео-Эльдорадо</b> · Бизнес-тренер центрального офиса (CEO-3)</div>
-        </li>
-        <li>
-          <span class="timeline__years">2013 — 2014</span>
-          <div><b>М.Видео-Эльдорадо</b> · Региональный HR BP</div>
-        </li>
-        <li>
-          <span class="timeline__years">до 2013</span>
-          <div><b>МегаФон, Евросеть</b> · T&amp;D и региональное руководство розницей, Краснодар</div>
-        </li>
+        {% endfor %}
       </ol>
     </div>
   </div>
@@ -276,101 +146,59 @@ preload_portrait: true
 <section class="section" id="ai">
   <div class="wrap">
     <div class="section__head section__head--center">
-      <span class="kicker">03 — AI &amp; EdTech</span>
-      <h2>Развитие AI-компетенций организации</h2>
+      <span class="kicker">{{ ai.kicker }}</span>
+      <h2>{{ ai.title }}</h2>
       <p class="section__sub">
-        Проектирую и запускаю программы AI-грамотности и AI-экспертности — от C-level до
-        линейных сотрудников. Веду change management при внедрении AI, формирую сеть
-        AI-амбассадоров и корпоративные гайдлайны.
+        {{ ai.subtitle }}
       </p>
     </div>
 
     <div class="grid-3">
+      {% assign tiles = site.ai_tiles | sort: "order" %}
+      {% for tile in tiles %}
       <div class="tile">
         <div class="tile__icon" aria-hidden="true">
+          {% case tile.icon_type %}
+          {% when "sun" %}
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.6"/>
           </svg>
-        </div>
-        <h3>AI-стратегия обучения</h3>
-        <p>
-          От определения приоритетных AI-сценариев до внедрения и измерения бизнес-эффекта.
-          Сегментированный подход для руководителей, продуктовых команд и фронт-лайна.
-        </p>
-      </div>
-
-      <div class="tile">
-        <div class="tile__icon" aria-hidden="true">
+          {% when "lms" %}
           <svg viewBox="0 0 24 24" fill="none">
             <rect x="3" y="5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/>
             <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             <path d="M7 11l2.5 2.5L14 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <h3>LMS / LXP и адаптивное обучение</h3>
-        <p>
-          E-learning, симуляторы, AR/VR, AI-рекомендательные системы, генеративный AI в
-          создании контента, instructional design, продуктовый подход в L&amp;D.
-        </p>
-      </div>
-
-      <div class="tile">
-        <div class="tile__icon" aria-hidden="true">
+          {% when "people" %}
           <svg viewBox="0 0 24 24" fill="none">
             <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/>
             <circle cx="17" cy="7" r="2" stroke="currentColor" stroke-width="1.6"/>
             <path d="M3 20c0-3 2.7-5 6-5s6 2 6 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             <path d="M15 20c0-2 1.7-3.5 4-3.5s2 0 2 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
-        </div>
-        <h3>Сеть AI-амбассадоров</h3>
-        <p>
-          Формирование сообщества внутренних амбассадоров, корпоративные гайдлайны
-          по использованию AI, программы AI-грамотности и AI-экспертности.
-        </p>
-      </div>
-
-      <div class="tile">
-        <div class="tile__icon" aria-hidden="true">
+          {% when "chart" %}
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M4 19V5m0 14h16M8 15v-4m4 4V8m4 7v-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
-        </div>
-        <h3>Бизнес-эффект и метрики</h3>
-        <p>
-          Внедряю метрики эффективности обучения и подходы к оценке бизнес-эффектов.
-          Кейс рекомендательной системы — подтверждённый эффект 300 млн ₽.
-        </p>
-      </div>
-
-      <div class="tile">
-        <div class="tile__icon" aria-hidden="true">
+          {% when "shield" %}
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M12 3l8 4v6c0 4.5-3.4 7.5-8 8-4.6-.5-8-3.5-8-8V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
             <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </div>
-        <h3>Change management</h3>
-        <p>
-          Сопровождаю внедрение AI на уровне процессов и культуры: коммуникации, обучение,
-          поддержка, работа со стейкхолдерами C-level.
-        </p>
-      </div>
-
-      <div class="tile">
-        <div class="tile__icon" aria-hidden="true">
+          {% when "list" %}
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             <circle cx="18" cy="17" r="2.5" stroke="currentColor" stroke-width="1.6"/>
           </svg>
+          {% endcase %}
         </div>
-        <h3>Reskilling &amp; Upskilling</h3>
+        <h3>{{ tile.title }}</h3>
         <p>
-          Школы цифровых профессий, программы для менеджмента, ИПР и карьерные треки,
-          ассессмент-центры (в т.ч. AI).
+          {{ tile.description }}
         </p>
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -379,31 +207,26 @@ preload_portrait: true
 <section class="section section--alt" id="education">
   <div class="wrap section__grid">
     <div class="section__head">
-      <span class="kicker">04 — Образование</span>
-      <h2>Системное и продолжающееся образование</h2>
+      <span class="kicker">{{ edu.kicker }}</span>
+      <h2>{{ edu.title }}</h2>
       <p class="section__sub">
-        Базовое образование в менеджменте плюс непрерывное обучение в L&amp;D, оценке и
-        технологиях.
+        {{ edu.subtitle }}
       </p>
     </div>
     <div class="section__body">
       <div class="edu">
-        <div class="edu__year">2010</div>
+        <div class="edu__year">{{ edu.main.year }}</div>
         <div class="edu__body">
-          <h3>Российский государственный торгово-экономический университет</h3>
-          <p>Специалист, Экономика и управление / Менеджмент организации. Москва.</p>
+          <h3>{{ edu.main.title }}</h3>
+          <p>{{ edu.main.description }}</p>
         </div>
       </div>
 
-      <h3 class="certs__title">Ключевые сертификации</h3>
+      <h3 class="certs__title">{{ edu.certs_title }}</h3>
       <ul class="certs" role="list">
-        <li><b>2025</b><span>Профессия Python-разработчик · Hexlet</span></li>
-        <li><b>2024</b><span>Углублённая интерпретация Hogan · AS Russia</span></li>
-        <li><b>2023</b><span>Школа продуктового трекинга · Акселератор ФРИИ</span></li>
-        <li><b>2023</b><span>Сертификация по методологии Hogan · AS Russia</span></li>
-        <li><b>2022</b><span>Маркетинговые стратегии и бренд в образовании · DEDU CENTER</span></li>
-        <li><b>2021</b><span>Стратегии обучения взрослых · DEDU CENTER</span></li>
-        <li><b>2020</b><span>Программа подготовки бизнес-лидеров · SSE Russia</span></li>
+        {% assign certs = site.certs | sort: "order" %}
+        {% for c in certs %}<li><b>{{ c.year }}</b><span>{{ c.title }}</span></li>
+        {% endfor %}
       </ul>
     </div>
   </div>
@@ -414,11 +237,10 @@ preload_portrait: true
 <section class="section" id="blog">
   <div class="wrap">
     <div class="section__head section__head--center">
-      <span class="kicker">05 — Блог</span>
-      <h2>Последние записи</h2>
+      <span class="kicker">{{ blog.kicker }}</span>
+      <h2>{{ blog.title }}</h2>
       <p class="section__sub">
-        Заметки про обучение, технологии и менеджмент. Делюсь практикой, экспериментами и
-        выводами из работы.
+        {{ blog.subtitle }}
       </p>
     </div>
 
@@ -450,7 +272,7 @@ preload_portrait: true
 
     {% if site.posts.size > 3 %}
       <div class="section__more">
-        <a class="btn btn--ghost" href="{{ '/blog/' | relative_url }}">Все записи</a>
+        <a class="btn btn--ghost" href="{{ '/blog/' | relative_url }}">{{ blog.more_label }}</a>
       </div>
     {% endif %}
   </div>
@@ -461,32 +283,30 @@ preload_portrait: true
 <section class="section contact" id="contact">
   <div class="wrap contact__inner">
     <div class="contact__copy">
-      <span class="kicker">{% if site.posts.size > 0 %}06{% else %}05{% endif %} — Контакты</span>
-      <h2>Давайте обсудим вашу задачу в&nbsp;T&amp;D</h2>
+      <span class="kicker">{% if site.posts.size > 0 %}{{ contact.kicker_with_blog }}{% else %}{{ contact.kicker_no_blog }}{% endif %}</span>
+      <h2>{{ contact.title }}</h2>
       <p>
-        Открыт к ролям уровня Head of L&amp;D / Head of T&amp;D, директора корпоративного
-        университета, а также к проектной работе по AI-трансформации обучения. Удобный формат
-        связи — Telegram или почта.
+        {{ contact.description }}
       </p>
     </div>
     <div class="contact__actions">
-      <a class="contact-card" href="https://t.me/amazloev" target="_blank" rel="noopener">
+      <a class="contact-card" href="{{ site_data.contacts.telegram_url }}" target="_blank" rel="noopener">
         <span class="contact-card__label">Telegram</span>
-        <span class="contact-card__value">@amazloev</span>
+        <span class="contact-card__value">{{ site_data.contacts.telegram_handle }}</span>
         <svg class="contact-card__arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none">
           <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <a class="contact-card" href="mailto:a.mazloev@mail.ru">
+      <a class="contact-card" href="mailto:{{ site_data.contacts.email }}">
         <span class="contact-card__label">Email</span>
-        <span class="contact-card__value">a.mazloev@mail.ru</span>
+        <span class="contact-card__value">{{ site_data.contacts.email }}</span>
         <svg class="contact-card__arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none">
           <path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <a class="contact-card" href="{{ '/assets/cv.pdf' | relative_url }}" target="_blank" rel="noopener">
+      <a class="contact-card" href="{{ site_data.contacts.cv_file | relative_url }}" target="_blank" rel="noopener">
         <span class="contact-card__label">Резюме</span>
-        <span class="contact-card__value">CV · PDF</span>
+        <span class="contact-card__value">{{ site_data.contacts.cv_label }}</span>
         <svg class="contact-card__arrow" viewBox="0 0 24 24" aria-hidden="true" fill="none">
           <path d="M12 4v12m0 0l-4-4m4 4l4-4M5 20h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>

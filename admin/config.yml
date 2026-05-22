@@ -11,10 +11,220 @@ public_folder: "/assets/uploads"
 locale: "ru"
 
 collections:
+  # ──────────────────────────────────────────────────────────
+  # 1. ГЛАВНАЯ — отдельные «файлы» под каждый блок
+  # ──────────────────────────────────────────────────────────
+  - name: "home"
+    label: "Главная страница"
+    description: "Тексты блоков на главной"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "hero"
+        label: "Hero (первый экран)"
+        file: "_data/hero.yml"
+        fields:
+          - { label: "Заголовок (можно с HTML: <br />, <span class='accent'>...</span>)", name: "title_html", widget: "text" }
+          - { label: "Подзаголовок (lede)", name: "lede", widget: "text" }
+          - { label: "Кнопка основная — текст", name: "cta_primary_label", widget: "string" }
+          - { label: "Кнопка вторичная — текст", name: "cta_secondary_label", widget: "string" }
+          - label: "Цифры под Hero"
+            name: "stats"
+            widget: "list"
+            min: 1
+            max: 8
+            fields:
+              - { label: "Подпись", name: "label", widget: "string" }
+              - { label: "Значение", name: "value", widget: "string" }
+              - { label: "Суффикс (+, млн ₽, …)", name: "suffix", widget: "string", required: false }
+          - label: "Бегущая строка (теги)"
+            name: "marquee"
+            widget: "list"
+            field: { label: "Тег", name: "tag", widget: "string" }
+
+      - name: "site"
+        label: "Общие данные сайта"
+        file: "_data/site.yml"
+        fields:
+          - { label: "Статус под логотипом в Hero", name: "hero_status", widget: "string" }
+          - label: "Контакты"
+            name: "contacts"
+            widget: "object"
+            fields:
+              - { label: "Telegram — ник (для отображения)", name: "telegram_handle", widget: "string" }
+              - { label: "Telegram — ссылка", name: "telegram_url", widget: "string" }
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "Файл резюме — подпись", name: "cv_label", widget: "string" }
+              - { label: "Файл резюме — путь", name: "cv_file", widget: "string" }
+          - { label: "Подпись в подвале", name: "footer_tagline", widget: "string" }
+
+      - name: "about"
+        label: "Секция «О себе»"
+        file: "_data/about.yml"
+        fields:
+          - { label: "Кикер (например, «01 — О себе»)", name: "kicker", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - label: "Абзацы текста"
+            name: "paragraphs"
+            widget: "list"
+            min: 1
+            field: { label: "Абзац", name: "text", widget: "text" }
+          - label: "Чипы (ключевые навыки)"
+            name: "chips"
+            widget: "list"
+            field: { label: "Навык", name: "chip", widget: "string" }
+
+      - name: "experience"
+        label: "Секция «Опыт» — заголовок и Timeline"
+        file: "_data/experience.yml"
+        fields:
+          - { label: "Кикер", name: "kicker", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Подзаголовок", name: "subtitle", widget: "text" }
+          - { label: "Заголовок блока Timeline", name: "timeline_title", widget: "string" }
+          - label: "Карьерный трек (Timeline)"
+            name: "timeline"
+            widget: "list"
+            fields:
+              - { label: "Годы", name: "years", widget: "string" }
+              - { label: "Компания", name: "company", widget: "string" }
+              - { label: "Роль", name: "role", widget: "string" }
+
+      - name: "ai_section"
+        label: "Заголовок секции «AI & EdTech»"
+        file: "_data/ai_section.yml"
+        fields:
+          - { label: "Кикер", name: "kicker", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Подзаголовок", name: "subtitle", widget: "text" }
+
+      - name: "education"
+        label: "Секция «Образование» (заголовок и базовое образование)"
+        file: "_data/education.yml"
+        fields:
+          - { label: "Кикер", name: "kicker", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Подзаголовок", name: "subtitle", widget: "text" }
+          - label: "Основное образование"
+            name: "main"
+            widget: "object"
+            fields:
+              - { label: "Год", name: "year", widget: "string" }
+              - { label: "Название", name: "title", widget: "string" }
+              - { label: "Описание", name: "description", widget: "text" }
+          - { label: "Заголовок блока сертификаций", name: "certs_title", widget: "string" }
+
+      - name: "blog_section"
+        label: "Секция «Блог» на главной"
+        file: "_data/blog_section.yml"
+        fields:
+          - { label: "Кикер", name: "kicker", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Подзаголовок", name: "subtitle", widget: "text" }
+          - { label: "Текст кнопки «Все записи»", name: "more_label", widget: "string" }
+
+      - name: "contact"
+        label: "Секция «Контакты»"
+        file: "_data/contact.yml"
+        fields:
+          - { label: "Кикер (если блога нет)", name: "kicker_no_blog", widget: "string" }
+          - { label: "Кикер (если блог есть)", name: "kicker_with_blog", widget: "string" }
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Описание", name: "description", widget: "text" }
+
+  # ──────────────────────────────────────────────────────────
+  # 2. КЕЙСЫ — можно добавлять/удалять/менять порядок
+  # ──────────────────────────────────────────────────────────
+  - name: "cases"
+    label: "Кейсы (секция «Опыт»)"
+    label_singular: "Кейс"
+    folder: "_cases"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ["order", "title"]
+    editor:
+      preview: false
+    fields:
+      - { label: "Порядок (меньше — выше)", name: "order", widget: "number", value_type: "int", min: 1 }
+      - { label: "Тег (Стратегия, Reskilling, EdTech…)", name: "tag", widget: "string" }
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text" }
+      - { label: "Выделить акцентом (зелёная карточка)", name: "accent", widget: "boolean", default: false }
+      - label: "Метрики"
+        name: "metrics"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Значение", name: "value", widget: "string" }
+          - { label: "Подпись", name: "label", widget: "string" }
+      - { label: "Сноска (необязательно)", name: "note", widget: "string", required: false, default: "" }
+      - { label: "Скрытое поле — Decap требует body", name: "body", widget: "hidden", default: "" }
+
+  # ──────────────────────────────────────────────────────────
+  # 3. AI & EdTech — 6 тайлов
+  # ──────────────────────────────────────────────────────────
+  - name: "ai_tiles"
+    label: "AI & EdTech — тайлы"
+    label_singular: "Тайл"
+    folder: "_ai_tiles"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ["order", "title"]
+    editor:
+      preview: false
+    fields:
+      - { label: "Порядок (меньше — выше)", name: "order", widget: "number", value_type: "int", min: 1 }
+      - label: "Иконка"
+        name: "icon_type"
+        widget: "select"
+        options:
+          - { label: "Солнце (AI-стратегия)", value: "sun" }
+          - { label: "Экран с галочкой (LMS / LXP)", value: "lms" }
+          - { label: "Силуэты (Сеть / люди)", value: "people" }
+          - { label: "Столбцы (Метрики / эффект)", value: "chart" }
+          - { label: "Щит (Change management)", value: "shield" }
+          - { label: "Список (Reskilling)", value: "list" }
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text" }
+      - { label: "Скрытое поле — Decap требует body", name: "body", widget: "hidden", default: "" }
+
+  # ──────────────────────────────────────────────────────────
+  # 4. СЕРТИФИКАЦИИ
+  # ──────────────────────────────────────────────────────────
+  - name: "certs"
+    label: "Сертификации"
+    label_singular: "Сертификация"
+    folder: "_certs"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ["order", "year"]
+    editor:
+      preview: false
+    fields:
+      - { label: "Порядок (меньше — выше)", name: "order", widget: "number", value_type: "int", min: 1 }
+      - { label: "Год", name: "year", widget: "string" }
+      - { label: "Название и провайдер (через · )", name: "title", widget: "string" }
+      - { label: "Скрытое поле — Decap требует body", name: "body", widget: "hidden", default: "" }
+
+  # ──────────────────────────────────────────────────────────
+  # 5. ПОСТЫ БЛОГА
+  # ──────────────────────────────────────────────────────────
   - name: "posts"
     label: "Записи блога"
+    label_singular: "Запись"
     folder: "_posts"
     create: true
+    delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "md"
     format: "frontmatter"

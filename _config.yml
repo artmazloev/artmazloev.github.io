@@ -46,6 +46,15 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
 
+# Дополнительные коллекции (data-only, не публикуются как страницы)
+collections:
+  cases:
+    output: false
+  ai_tiles:
+    output: false
+  certs:
+    output: false
+
 defaults:
   - scope:
       path: ""
