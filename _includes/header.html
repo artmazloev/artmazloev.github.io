@@ -20,5 +20,19 @@
       <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="is-active"{% endif %}>Блог</a>
     </nav>
     <a class="btn btn--ghost header__cta" href="{{ '/#contact' | relative_url }}">Связаться</a>
+    <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
   </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация">
+    <a href="{{ '/#about' | relative_url }}">О себе</a>
+    <a href="{{ '/#experience' | relative_url }}">Опыт и кейсы</a>
+    <a href="{{ '/#ai' | relative_url }}">AI и EdTech</a>
+    <a href="{{ '/#education' | relative_url }}">Образование</a>
+    <a href="{{ '/blog/' | relative_url }}"{% if page.url contains '/blog' %} class="is-active"{% endif %}>Блог</a>
+    <a href="{{ '/#contact' | relative_url }}">Контакты</a>
+  </nav>
 </header>

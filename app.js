@@ -66,3 +66,44 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   const initial = params.get("cat");
   if (initial) applyFilter(initial);
 })();
+
+// Mobile navigation toggle
+(function () {
+  const header = document.getElementById("header");
+  const toggle = header ? header.querySelector(".nav-toggle") : null;
+  const mobileNav = header ? header.querySelector(".mobile-nav") : null;
+  if (!toggle || !mobileNav) return;
+
+  const close = () => {
+    header.classList.remove("is-mobile-open");
+    document.body.classList.remove("has-mobile-nav-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Открыть меню");
+  };
+  const open = () => {
+    header.classList.add("is-mobile-open");
+    document.body.classList.add("has-mobile-nav-open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Закрыть меню");
+  };
+
+  toggle.addEventListener("click", () => {
+    if (toggle.getAttribute("aria-expanded") === "true") close();
+    else open();
+  });
+
+  // Закрыть при клике по ссылке внутри меню
+  mobileNav.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", close);
+  });
+
+  // Закрыть по Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+
+  // Закрыть при ресайзе на десктоп
+  matchMedia("(min-width: 861px)").addEventListener("change", (e) => {
+    if (e.matches) close();
+  });
+})();

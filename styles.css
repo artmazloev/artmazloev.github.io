@@ -1160,3 +1160,97 @@ h4 {
     grid-template-columns: 1fr;
   }
 }
+
+/* ============================================================
+   MOBILE NAVIGATION (burger)
+   ============================================================ */
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.nav-toggle:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.nav-toggle__bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  padding: 8px 24px 24px;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.mobile-nav a {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: color 0.15s ease;
+}
+.mobile-nav a:last-child {
+  border-bottom: none;
+}
+.mobile-nav a:hover,
+.mobile-nav a.is-active {
+  color: var(--accent);
+}
+
+.header.is-mobile-open {
+  background: var(--bg);
+}
+.header.is-mobile-open .mobile-nav {
+  display: flex;
+  animation: mobileNavIn 0.2s ease;
+}
+@keyframes mobileNavIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: flex;
+  }
+  /* CTA-кнопка «Связаться» уже скрыта существующим правилом —
+     ссылка на контакты доступна в выпадающем меню */
+  body.has-mobile-nav-open {
+    overflow: hidden;
+  }
+}
+@media (min-width: 861px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
